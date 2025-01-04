@@ -17,7 +17,7 @@ public:
 
 private:
     uint8_t _in1Pin, _in2Pin;
-
+    uint8_t positivePwm(int8_t Pwm_in);
     void setOutputs(uint8_t in1, uint8_t in2);
 };
 

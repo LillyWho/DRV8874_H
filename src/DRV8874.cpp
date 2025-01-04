@@ -24,7 +24,7 @@ void DRV8874::reverse(uint8_t pwm) {
 }
 
 void DRV8874::brakeLow() {
-    setOutputs(LOW, LOW);
+    setOutputs(HIGH, HIGH);
 }
 
 void DRV8874::brakeForward(uint8_t pwm) {
@@ -40,4 +40,7 @@ void DRV8874::brakeReverse(uint8_t pwm) {
 void DRV8874::setOutputs(uint8_t in1, uint8_t in2) {
     digitalWrite(_in1Pin, in1);
     digitalWrite(_in2Pin, in2);
+}
+uint8_t DRV8874::positivePwm(int8_t Pwm_in) {
+    return (Pwm_in < 0) ? -Pwm_in : Pwm_in;
 }
