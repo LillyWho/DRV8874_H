@@ -1,11 +1,12 @@
 #include "DRV8874.h"
 
-DRV8874::DRV8874(uint8_t in1Pin, uint8_t in2Pin) 
-    : _in1Pin(in1Pin), _in2Pin(in2Pin) {}
+DRV8874::DRV8874(uint8_t in1Pin, uint8_t in2Pin, uint8_t sleepPin) 
+    : _in1Pin(in1Pin), _in2Pin(in2Pin), _sleepPin(sleepPin) {}
 
 void DRV8874::begin() {
     pinMode(_in1Pin, OUTPUT);
     pinMode(_in2Pin, OUTPUT);
+    pingMode(_sleepPin,OUTPUT);
     coast(); // Initialize in coast mode
 }
 
@@ -43,4 +44,10 @@ void DRV8874::setOutputs(uint8_t in1, uint8_t in2) {
 }
 uint8_t DRV8874::positivePwm(int8_t Pwm_in) {
     return (Pwm_in < 0) ? -Pwm_in : Pwm_in;
+}
+void DRV8874::doSleep(bool doSleep) {
+
+    digitalWrite(_sleepPin,!doSleep); // the SLEEP pin defaults to low, and the board sleeps if it is low, so if sleep == true then set the pin to FALSE
+    return;
+    
 }
