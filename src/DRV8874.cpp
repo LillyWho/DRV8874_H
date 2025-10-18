@@ -6,7 +6,7 @@ DRV8874::DRV8874(uint8_t in1Pin, uint8_t in2Pin, uint8_t sleepPin)
 void DRV8874::begin() {
     pinMode(_in1Pin, OUTPUT);
     pinMode(_in2Pin, OUTPUT);
-    pingMode(_sleepPin,OUTPUT);
+    pinMode(_sleepPin,OUTPUT); // I wrote "pingMode" what the slobbering feck
     coast(); // Initialize in coast mode
 }
 
